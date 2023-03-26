@@ -5,7 +5,7 @@ import { resolve } from "path"
 const aliases = {
   components: "src/components",
   plugins: "src/plugins",
-  vuetify: "vuetify",
+  // vuetify: "vuetify",
 }
 
 const resolvedAliases = Object.fromEntries(
