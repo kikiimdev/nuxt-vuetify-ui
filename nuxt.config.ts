@@ -11,5 +11,10 @@ export default defineNuxtConfig({
     define: {
       "process.env.DEBUG": false,
     },
+    build: {
+      rollupOptions: {
+        external: ["vuetify"],
+      },
+    },
   },
 })
