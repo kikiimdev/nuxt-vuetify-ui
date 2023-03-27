@@ -1,4 +1,4 @@
-import { useDisplay } from "vuetify/lib/framework.mjs"
+import { useDisplay } from "vuetify"
 
 export const useKeyboardDetect = () => {
   const { xs } = useDisplay()

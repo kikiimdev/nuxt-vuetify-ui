@@ -12,7 +12,7 @@
 </template>
 
 <script setup lang="ts">
-  import { useDisplay } from "vuetify/lib/framework.mjs"
+  import { useDisplay } from "vuetify"
 
   const { xs } = useDisplay()
   const { notifications, remove } = useNotify()
