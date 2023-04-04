@@ -21,7 +21,7 @@ export default defineNuxtConfig({
     "vuetify/lib/styles/main.sass",
   ],
   build: {
-    transpile: ["vuetify"],
+    transpile: ["vuetify", "chart.js"],
   },
   vite: {
     define: {

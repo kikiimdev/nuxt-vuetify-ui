@@ -4,12 +4,28 @@ import * as directives from "vuetify/directives"
 import { md2 } from "vuetify/blueprints"
 import * as labs from "vuetify/labs/components"
 
-const light: ThemeDefinition = {
+const eumkmLight: ThemeDefinition = {
   dark: false,
   colors: {
     background: "#F9FAFE",
     // surface: '#FFFFFF',
+    primary: "#36A3F7",
     // primary: '#6200EE',
+    // secondary: '#03DAC6',
+    // error: '#B00020',
+    // info: '#2196F3',
+    // success: '#4CAF50',
+    // warning: '#FB8C00',
+  },
+}
+
+const disporaLight: ThemeDefinition = {
+  dark: false,
+  colors: {
+    background: "#F9FAFE",
+    drawer: "#2F4256",
+    // surface: '#FFFFFF',
+    primary: "#36A3F7",
     // secondary: '#03DAC6',
     // error: '#B00020',
     // info: '#2196F3',
@@ -30,7 +46,8 @@ export default defineNuxtPlugin((nuxtApp) => {
     theme: {
       defaultTheme: "light",
       themes: {
-        light,
+        eumkmLight,
+        disporaLight,
       },
     },
     defaults: {
