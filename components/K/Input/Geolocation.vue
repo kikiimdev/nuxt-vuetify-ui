@@ -1,5 +1,5 @@
 <template>
-  <KInputBase v-bind="$attrs">
+  <KInputBase v-bind="$attrs" class="mb-4">
     <div
       style="width: 100%; z-index: 0"
       :style="{
@@ -93,10 +93,6 @@
         <KInputText v-model="modelValueRef.longitude" label="Longitude" />
       </VCol>
     </VRow>
-
-    <VBtn :loading="fetchingUserLocation" @click="locationPermissionRequest()">
-      Get Location
-    </VBtn>
   </KInputBase>
 
   <KDialog title="Izin Lokasi" v-model="showLocationPermissionRequest">
@@ -155,7 +151,7 @@
     modelValue: {
       type: Object as PropType<Geolocation>,
       default: () => {
-        return { latitude: undefined, longitude: undefined }
+        return { latitude: 0, longitude: 0 }
       },
     },
     tileLayer: {
@@ -205,7 +201,7 @@
 
   const toArrayGeolocation = (value: any) => {
     if (!value) {
-      return [undefined, undefined]
+      return [0, 0]
     }
 
     if (value.latitude) {
@@ -262,8 +258,7 @@
   }
 
   const convertedModelValue = computed(() => {
-    if (!modelValueRef.value || !modelValueRef.value?.latitude)
-      return [undefined, undefined]
+    if (!modelValueRef.value || !modelValueRef.value?.latitude) return [0, 0]
 
     return toArrayGeolocation(modelValueRef.value)
   })
