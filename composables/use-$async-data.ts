@@ -1,6 +1,6 @@
 type Opts<T> = {
   immediate?: Boolean
-  onSuccess?: (data?: Awaited<T>) => any
+  onSuccess?: (data?: Awaited<Partial<T>>) => any
   onError?: (e?: any) => any
   onFinish?: Function
   beforeExecute?: Function

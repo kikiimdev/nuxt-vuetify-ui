@@ -94,6 +94,16 @@
           v-bind="schema"
           v-model="modelValueRef[schema.model]"
         />
+        <KInputFile
+          v-else-if="showInput(schema, 'file')"
+          v-bind="schema"
+          v-model="modelValueRef[schema.model]"
+        />
+        <KInputGeolocation
+          v-else-if="showInput(schema, 'geolocation')"
+          v-bind="schema"
+          v-model="modelValueRef[schema.model]"
+        />
         <KInputText
           v-else-if="showInputText(schema)"
           v-bind="schema"
@@ -106,6 +116,9 @@
 
 <script setup lang="ts">
   const _inputType = [
+    "h1",
+    "h2",
+    "h3",
     "area",
     "group",
     "divider",
@@ -114,9 +127,8 @@
     "currency",
     "checkbox",
     "radio",
-    "h1",
-    "h2",
-    "h3",
+    "file",
+    "geolocation",
   ] as const
   type InputType = typeof _inputType[number]
 

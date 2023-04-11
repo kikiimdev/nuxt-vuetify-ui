@@ -2,7 +2,11 @@ lockfileVersion: 5.4
 
 specifiers:
   '@mdi/font': ^7.1.96
+  '@types/leaflet': ^1.9.3
+  '@vue-leaflet/vue-leaflet': ^0.8.0
+  '@vueuse/core': ^9.13.0
   chart.js: ^4.2.1
+  leaflet: ^1.9.3
   nuxt: ^3.2.3
   sass: ^1.58.3
   vue-chart-3: ^3.1.8
@@ -10,12 +14,16 @@ specifiers:
 
 dependencies:
   '@mdi/font': 7.1.96
+  '@vueuse/core': 9.13.0
   chart.js: 4.2.1
   sass: 1.58.3
   vue-chart-3: 3.1.8_chart.js@4.2.1
   vuetify: 3.1.4
 
 devDependencies:
+  '@types/leaflet': 1.9.3
+  '@vue-leaflet/vue-leaflet': 0.8.4_leaflet@1.9.3
+  leaflet: 1.9.3
   nuxt: 3.2.3_sass@1.58.3
 
 packages:
@@ -1542,6 +1550,16 @@ packages:
     resolution: {integrity: sha512-WulqXMDUTYAXCjZnk6JtIHPigp55cVtDgDrO2gHRwhyJto21+1zbVCtOYB2L1F9w4qCQ0rOGWBnBe0FNTiEJIQ==}
     dev: true
 
+  /@types/geojson/7946.0.10:
+    resolution: {integrity: sha512-Nmh0K3iWQJzniTuPRcJn5hxXkfB1T1pgB89SBig5PlJQU5yocazeu4jATJlaA0GYFKWMqDdvYemoSnF2pXgLVA==}
+    dev: true
+
+  /@types/leaflet/1.9.3:
+    resolution: {integrity: sha512-Caa1lYOgKVqDkDZVWkto2Z5JtVo09spEaUt2S69LiugbBpoqQu92HYFMGUbYezZbnBkyOxMNPXHSgRrRY5UyIA==}
+    dependencies:
+      '@types/geojson': 7946.0.10
+    dev: true
+
   /@types/node-fetch/2.6.2:
     resolution: {integrity: sha512-DHqhlq5jeESLy19TYhLakJ07kNumXWjcDdxXsLUMJZ6ue8VZJj4kLPQVE/2mdHh3xZziNF1xppu5lwmS53HR+A==}
     dependencies:
@@ -1565,6 +1583,10 @@ packages:
       '@types/node': 18.14.3
     dev: true
     optional: true
+
+  /@types/web-bluetooth/0.0.16:
+    resolution: {integrity: sha512-oh8q2Zc32S6gd/j50GowEjKLoOVOwHP/bWVjKJInBwQqdOYMdPrf1oVlelTlyfFK3CKxL1uahMDAr+vy8T7yMQ==}
+    dev: false
 
   /@unhead/dom/1.1.14:
     resolution: {integrity: sha512-a1sc1m+MknBdhecYbH3ubYRgNly5mIi+u35OJ6wo0jKclsdO0TsQ1uNwfEqxZZTs2RUH0p67w6fvjk2QSSjv4A==}
@@ -1651,6 +1673,15 @@ packages:
     dependencies:
       vite: 4.1.4_sass@1.58.3
       vue: 3.2.47
+    dev: true
+
+  /@vue-leaflet/vue-leaflet/0.8.4_leaflet@1.9.3:
+    resolution: {integrity: sha512-FyD75jMKzBQCW4TrzRMrIBa8OwaUXaSeaDWJvp7FIjpZzk8niHBfpP+QirA/BT9536FJXviRkmwac3Z7YOQHKQ==}
+    peerDependencies:
+      leaflet: ^1.6.0
+      vue: ^3.0.0
+    dependencies:
+      leaflet: 1.9.3
     dev: true
 
   /@vue/babel-helper-vue-transform-on/1.0.2:
@@ -1757,6 +1788,18 @@ packages:
   /@vue/shared/3.2.47:
     resolution: {integrity: sha512-BHGyyGN3Q97EZx0taMQ+OLNuZcW3d37ZEVmEAyeoA9ERdGvm9Irc/0Fua8SNyOtV1w6BS4q25wbMzJujO9HIfQ==}
 
+  /@vueuse/core/9.13.0:
+    resolution: {integrity: sha512-pujnclbeHWxxPRqXWmdkKV5OX4Wk4YeK7wusHqRwU0Q7EFusHoqNA/aPhB6KCh9hEqJkLAJo7bb0Lh9b+OIVzw==}
+    dependencies:
+      '@types/web-bluetooth': 0.0.16
+      '@vueuse/metadata': 9.13.0
+      '@vueuse/shared': 9.13.0
+      vue-demi: 0.13.11
+    transitivePeerDependencies:
+      - '@vue/composition-api'
+      - vue
+    dev: false
+
   /@vueuse/head/1.1.9_vue@3.2.47:
     resolution: {integrity: sha512-J6OT32x1MnFs6a90DdusFfxPZYupYGR1kItDTw06Lj6ZORJRG1Del1BEy5FFXI7mhuIM4/nGLXgW+FtLE6JJQQ==}
     peerDependencies:
@@ -1768,6 +1811,19 @@ packages:
       '@unhead/vue': 1.1.14_vue@3.2.47
       vue: 3.2.47
     dev: true
+
+  /@vueuse/metadata/9.13.0:
+    resolution: {integrity: sha512-gdU7TKNAUVlXXLbaF+ZCfte8BjRJQWPCa2J55+7/h+yDtzw3vOoGQDRXzI6pyKyo6bXFT5/QoPE4hAknExjRLQ==}
+    dev: false
+
+  /@vueuse/shared/9.13.0:
+    resolution: {integrity: sha512-UrnhU+Cnufu4S6JLCPZnkWh0WwZGUp72ktOF2DFptMlOs3TOdVv8xJN53zhHGARmVOsz5KqOls09+J1NR6sBKw==}
+    dependencies:
+      vue-demi: 0.13.11
+    transitivePeerDependencies:
+      - '@vue/composition-api'
+      - vue
+    dev: false
 
   /abbrev/1.1.1:
     resolution: {integrity: sha512-nne9/IiQ/hzIhY6pdDnbBtz7DjPTKrY00P/zvPSm5pOFkl6xuGrGnXn/VtTNNfNtAfZ9/1RtehkszU9qcTii0Q==}
@@ -3379,6 +3435,10 @@ packages:
     engines: {node: '>= 0.6.3'}
     dependencies:
       readable-stream: 2.3.8
+    dev: true
+
+  /leaflet/1.9.3:
+    resolution: {integrity: sha512-iB2cR9vAkDOu5l3HAay2obcUHZ7xwUBBjph8+PGtmW/2lYhbLizWtG7nTeYht36WfOslixQF9D/uSIzhZgGMfQ==}
     dev: true
 
   /lilconfig/2.0.6:
@@ -5320,6 +5380,19 @@ packages:
       chart.js: 4.2.1
       csstype: 3.1.2
       lodash-es: 4.17.21
+    dev: false
+
+  /vue-demi/0.13.11:
+    resolution: {integrity: sha512-IR8HoEEGM65YY3ZJYAjMlKygDQn25D5ajNFNoKh9RSDMQtlzCxtfQjdQgv9jjK+m3377SsJXY8ysq8kLCZL25A==}
+    engines: {node: '>=12'}
+    hasBin: true
+    requiresBuild: true
+    peerDependencies:
+      '@vue/composition-api': ^1.0.0-rc.1
+      vue: ^3.0.0-0 || ^2.6.0
+    peerDependenciesMeta:
+      '@vue/composition-api':
+        optional: true
     dev: false
 
   /vue-devtools-stub/0.1.0:

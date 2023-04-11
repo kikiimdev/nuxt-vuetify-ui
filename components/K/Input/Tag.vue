@@ -1,6 +1,11 @@
 <template>
   <KInputBase v-bind="$attrs">
-    <VCard outlined class="pa-2" variant="tonal">
+    <VCard
+      outlined
+      class="pa-2"
+      :class="[!$attrs.hint && 'mb-4']"
+      variant="tonal"
+    >
       <KFlex wrap class="align-center">
         <div
           v-for="(tag, index) in modelValueRef"
@@ -28,8 +33,8 @@
     </VCard>
 
     <!-- Hint -->
-    <KFlex>
-      <VCard v-if="$attrs.hint" flat color="info" class="mt-2 py-1 px-3">
+    <KFlex v-if="$attrs.hint" class="mb-4">
+      <VCard flat color="info" class="mt-2 py-1 px-3">
         <p v-html="$attrs.hint" class="text-caption" />
       </VCard>
     </KFlex>
@@ -55,6 +60,17 @@
   // const formattedRules: Ref<any[]> = computed(() =>
   //   rules ? useInputRules(rules as any[], modelValueRef) : []
   // );
+
+  // watch(
+  //   modelValueRef,
+  //   (v) => {
+  //     // @ts-ignore
+  //     if (!v?.length) modelValueRef.value = []
+  //   },
+  //   {
+  //     immediate: true,
+  //   }
+  // )
 
   onMounted(() => {
     // @ts-ignore

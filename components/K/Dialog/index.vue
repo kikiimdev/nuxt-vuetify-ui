@@ -27,7 +27,7 @@
 
       <VDivider />
 
-      <VCardText style="min-height: 100px" class="px-4">
+      <VCardText style="min-height: 100px" class="px-4" :class="[bodyClass]">
         <slot />
       </VCardText>
 
@@ -46,6 +46,7 @@
     modelValue: Boolean || undefined,
     title: String,
     maxWidth: String || Number,
+    bodyClass: String,
   })
   const emit = defineEmits(["update:modelValue"])
   const attrs = useAttrs()
