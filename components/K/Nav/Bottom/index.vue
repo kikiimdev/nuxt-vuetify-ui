@@ -9,15 +9,17 @@
       v-for="(navigation, index) in mainNavigations"
       :key="index + JSON.stringify(navigation)"
     >
-      <VBtn
-        :to="navigation.to"
-        :exact="navigation.exact"
-        @click="navigation.subs && selectSub(navigation)"
-      >
-        <VIcon>{{ navigation.icon }}</VIcon>
+      <template v-if="navigation.show !== false">
+        <VBtn
+          :to="navigation.to"
+          :exact="navigation.exact"
+          @click="navigation.subs && selectSub(navigation)"
+        >
+          <VIcon>{{ navigation.icon }}</VIcon>
 
-        {{ navigation.title }}
-      </VBtn>
+          {{ navigation.title }}
+        </VBtn>
+      </template>
     </template>
   </VBottomNavigation>
 
@@ -65,7 +67,7 @@
     else if (props.navigations?.length || 0 > 5) totalCut = 4
     // const totalCut = props.navigations?.length >
 
-    return props.navigations?.slice(0, totalCut - 1)
+    return props.navigations?.slice(0, totalCut)
   })
 
   const additionalNavigations = computed(() => {
