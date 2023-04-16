@@ -21,7 +21,7 @@
           v-for="(item, index) in items"
           :key="index + getItemTitle(item)"
           link
-          :class="[isSelected(item) && activeListClass + ' font-weight-bold']"
+          :class="[isSelected(item) && selectedClass + ' font-weight-bold']"
           @click="selectItem(item)"
         >
           <KFlex>
@@ -72,7 +72,7 @@
       type: String,
       default: "primary",
     },
-    activeListClass: {
+    selectedClass: {
       type: String,
       default: "bg-grey-lighten-3",
     },

@@ -42,7 +42,7 @@
       type: String,
       default: "primary",
     },
-    activeListClass: {
+    selectedClass: {
       type: String,
       default: "bg-grey-lighten-3",
     },
