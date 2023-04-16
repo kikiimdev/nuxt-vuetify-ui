@@ -1,5 +1,12 @@
 <template>
   <VForm>
+    <KFlex v-if="hasRequiredInput">
+      <VSheet color="info" class="px-3 py-2 mb-4" rounded>
+        <div class="text-caption">
+          <span class="font-weight-bold">*</span> = Wajib diisi
+        </div>
+      </VSheet>
+    </KFlex>
     <VRow no-gutters>
       <VCol
         v-for="(schema, index) in schemas"
@@ -172,6 +179,8 @@
   const showInputText = (schema: Schema) => {
     return !_inputType.includes(schema.inputType as InputType) && !schema.hide
   }
+
+  const hasRequiredInput = computed(() => props.schemas.find((s) => s.required))
 </script>
 
 <style></style>
