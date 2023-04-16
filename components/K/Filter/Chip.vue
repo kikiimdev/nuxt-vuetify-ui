@@ -1,52 +1,23 @@
 <template>
-  <VChip
-    :color="getItemTitle(modelValueRef) ? activeColor : ''"
-    @click="showDialog = true"
+  <KFilterBase
+    v-bind="{ ...$attrs, ...props }"
+    v-model="modelValueRef"
+    v-model:search="searchRef"
   >
-    <KFlex>
-      <VIcon v-if="prependIcon" :icon="prependIcon" />
-      <span v-if="label">{{ label }}</span>
-      <span v-if="modelValueRef">
-        : <b>{{ getItemTitle(modelValueRef) }}</b>
-      </span>
-      <VIcon v-if="appendIcon" :icon="appendIcon" />
-    </KFlex>
-  </VChip>
-
-  <KDialog v-model="showDialog" v-model:search="searchRef" title="Filter">
-    <KBlock>
-      <VList class="mx-n4 py-0">
-        <VListItem
-          v-for="(item, index) in items"
-          :key="index + getItemTitle(item)"
-          link
-          :class="[isSelected(item) && activeListClass + ' font-weight-bold']"
-          @click="selectItem(item)"
-        >
-          <KFlex>
-            <VIcon v-if="item.prependIcon" :icon="item.prependIcon" />
-            <span v-if="getItemTitle(item)">{{ getItemTitle(item) }}</span>
-            <template v-if="item.appendIcon">
-              <VSpacer />
-              <VIcon :icon="item.appendIcon" />
-            </template>
-          </KFlex>
-        </VListItem>
-      </VList>
-    </KBlock>
-
-    <template v-if="modelValueRef" #actions>
-      <VSpacer />
-      <VBtn
-        variant="flat"
-        color="grey-lighten-3"
-        class="text-none"
-        @click="clearFilter()"
-      >
-        Hapus Filter {{ label }}
-      </VBtn>
-    </template>
-  </KDialog>
+    <VChip
+      :color="getItemTitle(modelValueRef) ? activeColor : ''"
+      @click="showDialog = true"
+    >
+      <KFlex>
+        <VIcon v-if="prependIcon" :icon="prependIcon" />
+        <span v-if="label">{{ label }}</span>
+        <span v-if="modelValueRef">
+          : <b>{{ getItemTitle(modelValueRef) }}</b>
+        </span>
+        <VIcon v-if="appendIcon" :icon="appendIcon" />
+      </KFlex>
+    </VChip>
+  </KFilterBase>
 </template>
 
 <script setup lang="ts">
@@ -101,40 +72,6 @@
     }
 
     return item[props.itemTitle]
-  }
-
-  const getItemValue = (item: any) => {
-    if (!isObject(item) || props.returnObject) {
-      return item
-    }
-
-    return item[props.itemValue]
-  }
-
-  const selectItem = (item: any) => {
-    modelValueRef.value = getItemValue(item)
-
-    if (!props.stayOnSelect) {
-      showDialog.value = false
-    }
-  }
-
-  const clearFilter = () => {
-    modelValueRef.value = undefined
-
-    if (!props.stayOnSelect) {
-      showDialog.value = false
-    }
-  }
-
-  const isSelected = (item: any) => {
-    if (!isObject(item) || props.returnObject) {
-      return modelValueRef.value === item
-    }
-
-    return (
-      JSON.stringify(getItemValue(item)) === JSON.stringify(modelValueRef.value)
-    )
   }
 </script>
 
