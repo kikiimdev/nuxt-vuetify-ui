@@ -34,10 +34,10 @@
           :lat-lng="convertedModelValue"
           :icon="redIcon"
         >
-          <LTooltip>Posisi yang dipilih</LTooltip>
+          <LTooltip>{{ selectedLocationText }}</LTooltip>
         </LMarker>
 
-        <LControl :position="'bottomleft'">
+        <LControl v-if="!readonly" :position="'bottomleft'">
           <VBtn
             color="primary"
             class="text-none mr-2 mt-2 mt-sm-0"
@@ -87,10 +87,18 @@
 
     <VRow v-if="showManualInput" class="mt-n2" :no-gutters="xs">
       <VCol v-if="modelValueRef?.latitude" cols="12" md="6">
-        <KInputText v-model="modelValueRef.latitude" label="Latitude" />
+        <KInputText
+          v-model="modelValueRef.latitude"
+          label="Latitude"
+          :readonly="readonly"
+        />
       </VCol>
       <VCol v-if="modelValueRef?.longitude" cols="12" md="6">
-        <KInputText v-model="modelValueRef.longitude" label="Longitude" />
+        <KInputText
+          v-model="modelValueRef.longitude"
+          label="Longitude"
+          :readonly="readonly"
+        />
       </VCol>
     </VRow>
   </KInputBase>
@@ -147,6 +155,7 @@
   } = await useUserGeolocation()
 
   const props = defineProps({
+    readonly: Boolean,
     showManualInput: Boolean,
     modelValue: {
       type: Object as PropType<Geolocation>,
@@ -157,6 +166,10 @@
     tileLayer: {
       type: String,
       default: "https://mt0.google.com/vt/lyrs=m&hl=en&x={x}&y={y}&z={z}",
+    },
+    selectedLocationText: {
+      type: String,
+      default: "Posisi yang dipilih",
     },
     onError: Function,
     immediate: Boolean,
@@ -243,6 +256,10 @@
   const userLocation = ref(undefined)
 
   const handleMapClick = (event: any) => {
+    if (props.readonly) {
+      return
+    }
+
     const latlng = event.latlng
 
     if (!latlng) return
