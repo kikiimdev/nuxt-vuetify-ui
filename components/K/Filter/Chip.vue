@@ -3,16 +3,19 @@
     v-bind="{ ...$attrs, ...props }"
     v-model="modelValueRef"
     v-model:search="searchRef"
+    #default="{ title }"
   >
     <VChip
-      :color="getItemTitle(modelValueRef) ? activeColor : ''"
+      :label="square"
+      :color="title ? activeColor : ''"
+      :disabled="disabled"
       @click="showDialog = true"
     >
       <KFlex>
         <VIcon v-if="prependIcon" :icon="prependIcon" />
         <span v-if="label">{{ label }}</span>
-        <span v-if="modelValueRef">
-          : <b>{{ getItemTitle(modelValueRef) }}</b>
+        <span v-if="modelValueRef !== undefined">
+          : <b>{{ title }}</b>
         </span>
         <VIcon v-if="appendIcon" :icon="appendIcon" />
       </KFlex>
@@ -23,6 +26,8 @@
 <script setup lang="ts">
   const props = defineProps({
     label: String,
+    disabled: Boolean,
+    square: Boolean,
     prependIcon: String,
     appendIcon: String,
     search: String,

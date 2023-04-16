@@ -1,6 +1,6 @@
 <template>
   <div @click="showDialog = true">
-    <slot>
+    <slot :title="getItemTitle(selectedItem)">
       <VChip :color="getItemTitle(modelValueRef) ? activeColor : ''">
         <KFlex>
           <VIcon v-if="prependIcon" :icon="prependIcon" />
@@ -36,7 +36,7 @@
       </VList>
     </KBlock>
 
-    <template v-if="modelValueRef" #actions>
+    <template v-if="modelValueRef !== undefined" #actions>
       <VSpacer />
       <VBtn
         variant="flat"
@@ -137,6 +137,27 @@
       JSON.stringify(getItemValue(item)) === JSON.stringify(modelValueRef.value)
     )
   }
+
+  const findItem = () => {
+    const value = modelValueRef.value
+    const isObjectArray = isObject(props.items![0])
+
+    if (!value === undefined) {
+      return undefined
+    }
+
+    if (isObjectArray && !isObject(value)) {
+      return props.items?.find((i) => i[props.itemValue] === value)
+    }
+
+    if (!isObjectArray) {
+      return props.items?.find((i) => i === value)
+    }
+
+    return props.items?.find((i) => JSON.stringify(i) === JSON.stringify(value))
+  }
+
+  const selectedItem = computed(() => findItem())
 </script>
 
 <style></style>
