@@ -8,7 +8,15 @@
       label=""
       :items="_items"
       @change="$emit('change', modelValueRef)"
-    />
+    >
+      <template v-slot:item="{ props, item }">
+        <VListItem
+          v-bind="props"
+          :title="item?.raw[$attrs?.itemTitle]"
+          :subtitle="item?.raw[itemDescription!] || undefined"
+        ></VListItem>
+      </template>
+    </VAutocomplete>
   </KInputBase>
 </template>
 
@@ -22,6 +30,11 @@
     watch: {
       type: undefined,
     },
+    // itemTitle: {
+    //   type: String,
+    //   default: "title",
+    // },
+    itemDescription: String,
   })
   const emit = defineEmits(["update:modelValue", "update:search", "change"])
   const attrs = useAttrs()

@@ -10,12 +10,15 @@
     <VRow no-gutters>
       <VCol
         v-for="(schema, index) in schemas"
-        :key="`${schema.inputType}-${index + 1}`"
+        :key="`${schema.inputType}-${index + 1}-${schema.schemas?.length || 0}`"
         v-bind="schema"
         :cols="schema.cols || 12"
       >
         <VCard
-          v-if="schema.schemas"
+          v-if="showInput(schema, 'group') && schema.schemas"
+          :key="`${schema.inputType}-${index + 1}-${
+            schema.schemas?.length || 0
+          }`"
           :variant="hideExpandRef[schema.model + index] ? 'tonal' : 'outlined'"
           v-bind="schema"
           class="mb-6"
@@ -137,7 +140,7 @@
     "file",
     "geolocation",
   ] as const
-  type InputType = typeof _inputType[number]
+  type InputType = (typeof _inputType)[number]
 
   type Schema = {
     [x: string | number]: any
@@ -181,6 +184,11 @@
   }
 
   const hasRequiredInput = computed(() => props.schemas.find((s) => s.required))
+
+  // const forceReRender = ref(0)
+  // watch(props.schemas, () => {
+  //   forceReRender.value++
+  // })
 </script>
 
 <style></style>
