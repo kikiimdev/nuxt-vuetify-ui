@@ -9,7 +9,8 @@ const eumkmLight: ThemeDefinition = {
   colors: {
     background: "#F9FAFE",
     // surface: '#FFFFFF',
-    primary: "#36A3F7",
+    primary: "#F5B502",
+    // primary: "#36A3F7",
     // primary: '#6200EE',
     // secondary: '#03DAC6',
     // error: '#B00020',
