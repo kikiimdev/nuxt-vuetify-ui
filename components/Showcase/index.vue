@@ -5,6 +5,12 @@
         <VRow>
           <ShowcaseBaseCol>
             <ShowcaseBaseCard>
+              <ShowcasePushNotification />
+            </ShowcaseBaseCard>
+          </ShowcaseBaseCol>
+
+          <ShowcaseBaseCol>
+            <ShowcaseBaseCard>
               <ShowcaseFilters />
             </ShowcaseBaseCard>
           </ShowcaseBaseCol>
