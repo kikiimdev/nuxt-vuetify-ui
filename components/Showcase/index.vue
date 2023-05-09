@@ -5,7 +5,7 @@
         <VRow>
           <ShowcaseBaseCol>
             <ShowcaseBaseCard>
-              <ShowcasePushNotification />
+              <ShowcaseBrowserNotification />
             </ShowcaseBaseCard>
           </ShowcaseBaseCol>
 

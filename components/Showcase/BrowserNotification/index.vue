@@ -7,7 +7,7 @@
 </template>
 
 <script setup lang="ts">
-  const { createNotification } = usePushNotification()
+  const { createNotification } = useBrowserNotification()
 
   const pushNotification = () =>
     createNotification("Try to CLICK me!", {

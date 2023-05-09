@@ -5,7 +5,7 @@ type CreateOptions = NotificationOptions & {
   onShow?: (e: Event, notification: Notification) => void
 }
 
-export const usePushNotification = () => {
+export const useBrowserNotification = () => {
   const requestPermission = (
     fn: (permission: NotificationPermission) => void
   ) => Notification.requestPermission().then((permission) => fn(permission))
