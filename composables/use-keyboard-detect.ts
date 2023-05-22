@@ -8,7 +8,7 @@ export const useKeyboardDetect = () => {
   const currentHeight = ref(0)
   const isKeyboardVisible = computed(
     () =>
-      xs.value &&
+      // xs.value &&
       initialHeight.value > 0 &&
       currentHeight.value > 0 &&
       initialHeight.value > currentHeight.value
