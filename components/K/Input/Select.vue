@@ -2,11 +2,12 @@
   <KInputBase v-bind="$attrs">
     <VCombobox
       :key="$attrs.model"
+      :items="_items"
       v-bind="{ ...inputStyle, ...$attrs }"
       v-model="modelValueRef"
       v-model:search="searchRef"
+      :item-title="props.itemTitle || props['item-title'] || 'value'"
       label=""
-      :items="_items"
       @change="$emit('change', modelValueRef)"
     >
       <template v-slot:item="{ props, item }">
@@ -29,9 +30,9 @@
       <template v-slot:item="{ props, item }">
         <VListItem
           v-bind="props"
-          :title="item?.raw[$attrs?.itemTitle]"
-          :subtitle="item?.raw[itemDescription!] || undefined"
-        ></VListItem>
+          :title="getItemTitle(item.raw)"
+          :subtitle="getItemSubtitle(item.raw)"
+        />
       </template>
     </VAutocomplete> -->
   </KInputBase>
@@ -96,11 +97,11 @@
     let key = "name"
 
     if (props["itemTitle"]) {
-      return (key = props["itemTitle"])
+      key = props["itemTitle"]
     }
 
     if (props["item-title"]) {
-      return (key = props["item-title"])
+      key = props["item-title"]
     }
 
     if (typeof key === "string") {
@@ -114,11 +115,11 @@
     let key = "description"
 
     if (props["itemDesription"]) {
-      return (key = props["itemDesription"])
+      key = props["itemDesription"]
     }
 
     if (props["item-description"]) {
-      return (key = props["item-description"])
+      key = props["item-description"]
     }
 
     if (typeof key === "string") {
