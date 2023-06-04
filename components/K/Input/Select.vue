@@ -12,8 +12,8 @@
       <template v-slot:item="{ props, item }">
         <VListItem
           v-bind="props"
-          :title="item?.raw[($attrs as any)['item-title']]"
-          :subtitle="item?.raw[($attrs as any)['item-description']] || undefined"
+          :title="getItemTitle(item.raw)"
+          :subtitle="getItemSubtitle(item.raw)"
         />
       </template>
     </VCombobox>
@@ -47,10 +47,10 @@
     watch: {
       type: undefined,
     },
-    // itemTitle: {
-    //   type: String,
-    //   default: "title",
-    // },
+    itemTitle: {
+      type: String,
+      default: "title",
+    },
     itemDescription: String,
   })
   const emit = defineEmits(["update:modelValue", "update:search", "change"])
@@ -91,6 +91,42 @@
     await update()
     setTimeout(() => (isMounted.value = true), 400)
   })
+
+  const getItemTitle = (v: any) => {
+    let key = "name"
+
+    if (props["itemTitle"]) {
+      return (key = props["itemTitle"])
+    }
+
+    if (props["item-title"]) {
+      return (key = props["item-title"])
+    }
+
+    if (typeof key === "string") {
+      return v[key]
+    }
+
+    return key
+  }
+
+  const getItemSubtitle = (v: any) => {
+    let key = "description"
+
+    if (props["itemDesription"]) {
+      return (key = props["itemDesription"])
+    }
+
+    if (props["item-description"]) {
+      return (key = props["item-description"])
+    }
+
+    if (typeof key === "string") {
+      return v[key]
+    }
+
+    return key
+  }
 
   watch(
     () => props.watch,
