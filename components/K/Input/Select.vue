@@ -1,6 +1,23 @@
 <template>
   <KInputBase v-bind="$attrs">
-    <VAutocomplete
+    <VCombobox
+      :key="$attrs.model"
+      v-bind="{ ...inputStyle, ...$attrs }"
+      v-model="modelValueRef"
+      v-model:search="searchRef"
+      label=""
+      :items="_items"
+      @change="$emit('change', modelValueRef)"
+    >
+      <template v-slot:item="{ props, item }">
+        <VListItem
+          v-bind="props"
+          :title="item?.raw[($attrs as any)['item-title']]"
+          :subtitle="item?.raw[($attrs as any)['item-description']] || undefined"
+        />
+      </template>
+    </VCombobox>
+    <!-- <VAutocomplete
       :key="$attrs.model"
       v-bind="{ ...inputStyle, ...$attrs }"
       v-model="modelValueRef"
@@ -16,7 +33,7 @@
           :subtitle="item?.raw[itemDescription!] || undefined"
         ></VListItem>
       </template>
-    </VAutocomplete>
+    </VAutocomplete> -->
   </KInputBase>
 </template>
 
