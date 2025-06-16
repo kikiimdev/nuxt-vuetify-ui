@@ -13,4 +13,7 @@ export default defineNuxtConfig({
       "process.env.DEBUG": false,
     },
   },
-})
+  experimental: {
+    inlineSSRStyles: false,
+  },
+});

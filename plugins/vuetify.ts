@@ -1,8 +1,8 @@
-import { createVuetify, ThemeDefinition } from "vuetify"
-import * as components from "vuetify/components"
-import * as directives from "vuetify/directives"
-import { md2 } from "vuetify/blueprints"
-import * as labs from "vuetify/labs/components"
+import { createVuetify, type ThemeDefinition } from "vuetify";
+import * as components from "vuetify/components";
+import * as directives from "vuetify/directives";
+import { md2 } from "vuetify/blueprints";
+import * as labs from "vuetify/labs/components";
 
 const eumkmLight: ThemeDefinition = {
   dark: false,
@@ -18,7 +18,7 @@ const eumkmLight: ThemeDefinition = {
     // success: '#4CAF50',
     // warning: '#FB8C00',
   },
-}
+};
 
 const disporaLight: ThemeDefinition = {
   dark: false,
@@ -33,7 +33,7 @@ const disporaLight: ThemeDefinition = {
     // success: '#4CAF50',
     // warning: '#FB8C00',
   },
-}
+};
 
 export default defineNuxtPlugin((nuxtApp) => {
   const vuetify = createVuetify({
@@ -57,9 +57,9 @@ export default defineNuxtPlugin((nuxtApp) => {
         noDataText: "Results not found",
       },
     },
-  })
+  });
 
-  nuxtApp.vueApp.use(vuetify)
-})
+  nuxtApp.vueApp.use(vuetify);
+});
 
 // F9FAFE
